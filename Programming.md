@@ -12,3 +12,8 @@
 
 [threading in python](https://haerong22.tistory.com/39)
 
+## 3. Reference
+
+[reference in python](https://code13.tistory.com/214)
+
+
