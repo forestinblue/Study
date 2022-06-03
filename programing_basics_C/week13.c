@@ -165,7 +165,7 @@ int main(void)
 */
 
 
-
+/*
 
 #define MAX 10
 
@@ -212,4 +212,362 @@ int main(void)
     return 0;
 }
 
+*/
 
+
+
+
+
+
+/*
+#include <stdio.h>
+
+#define N_DATA 4
+
+void merge(int *A, int *B, int *C, int size);
+
+void array_print(char *name, int *a, int size)
+
+{
+
+        int i;
+
+        printf("%s[] = ", name);
+
+        for (i = 0; i<size; i++) {
+
+                printf("%d ", a[i]);
+
+        }
+
+        printf("\n");
+
+}
+
+int main(void)
+
+{
+
+    int i;
+
+
+
+    int A[] = { 2, 5, 7, 8};
+
+    int B[] = { 1, 3, 4, 6};
+
+    int C[8];
+
+        array_print("A", A, N_DATA);   
+
+array_print("B", B, N_DATA);
+
+    merge(A, B, C, 4);
+
+        array_print("C", C, 2*N_DATA);
+
+    for(i=0;i<8;i++)
+
+        printf("%d ", C[i]);
+
+    return 0;
+
+}
+
+
+
+void merge(int *A, int *B, int *C, int size)
+
+{ 
+
+    int i, a, b, c;
+
+
+
+    for(a=0, b=0, c=0;a<size && b<size;){
+
+        if(A[a]<=B[b])
+
+            C[c++] = A[a++];
+
+        else
+
+            C[c++] = B[b++];
+
+    }
+
+    for(i=a; i<size; i++)
+
+        C[c++] = A[i];
+
+    for(i=b; i<size; i++)
+
+        C[c++] = B[i];
+}
+
+*/
+
+/* 병합 프로그램 1
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#define MAX 4
+void merge(int* A, int * B, int * C , int size)
+{
+    int i , j;
+    for ( i = 0; i < size ; i++) // A[0] ~ A[3] ==> i = 4
+        C[i] = A[i];
+    for ( j = 0 ; j < size ; j ++) // C[4] = B[0] , C[5] = B[1]
+        C[i + j] = B[j];
+
+}
+
+void sort(int* a )
+{
+    int temp , i , k;
+    for ( i = 0; i < 8 ; i++ ){
+        for (k = i + 1 ; k <8; k++){
+            if (* (a + i) > *(a + k)){
+                temp = *(a+i);
+                *(a+i) = *(a + k);
+                *(a + k) = temp ;
+            }
+        }
+    }
+}
+
+void array_print(char * name , int * arr , int size)
+{
+    printf("%s [] = ", name);
+    for (int i = 0 ;  i < MAX; i++)
+        printf("%d \t", arr[i]);
+    printf("\n");
+}
+int main(void)
+{
+    int A[] = {2,5,7,8};
+    int B[] = {1,3,4,6};
+    int C[MAX * 2];
+    array_print("A",A , MAX);
+    array_print("B", B, MAX);
+    merge(A, B, C, MAX);
+    printf("정렬 전 = >");
+    sort(C);
+    printf("정렬 후 = >");
+    array_print("C", C, MAX * 2);
+    return 0;
+
+
+}
+
+
+
+-> 앞의 것의 교수님 버전인데, 탭이 안되어 있음
+
+
+
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include < stdio.h  >   
+
+#define MAX 4
+
+
+
+void merge(int* A, int* B, int* C, int size)
+
+{
+
+int i, j;
+
+
+for (i = 0; i < size; i++)     //A[0] ~ A[3]   ==> i =4
+
+C[i] = A[i];
+
+
+
+for (j = 0; j < size; j++)//C[4] = B[0], C[5] = B[1]  ...
+
+C[i + j] = B[j];
+
+}
+
+
+
+void sort(int* C)
+
+{
+
+int temp, i, k;
+
+for (i = 0; i < 8; i++) {
+
+for (k = i + 1; k < 8; k++) {
+
+if (*(C + i) > *(C + k)) {
+
+temp = *(C + i);
+
+*(C + i) = *(C + k);
+
+*(C + k) = temp;
+
+}
+
+}
+
+}
+
+}
+
+void array_print(char *name, int* arr, int size)
+
+{
+
+printf("%s[] = ", name);
+
+for (int i = 0; i < size; i++)
+
+printf("%d ", arr[i]);
+
+printf("\n");
+
+}
+
+int main(void)
+
+{
+
+int A[] = { 2, 5, 7, 8 };
+
+int B[] = { 1, 3, 4, 6 };
+
+int C[MAX * 2];
+
+
+
+array_print("A", A, MAX);
+
+array_print("B", B, MAX);
+
+merge(A, B, C, MAX);
+
+printf("정렬 전 => ");
+
+array_print("C", C, MAX * 2);
+
+sort(C);
+
+printf("정렬 후 => ");
+
+array_print("C", C, MAX * 2);
+
+
+
+return 0;
+
+}
+
+
+
+*/
+
+
+
+
+
+/* 병합 프로그램 2
+#define _CRT_SECURE_NO_WARNINGS
+
+#include < stdio.h  >   
+
+#define MAX 4
+
+
+
+void merge(int* A, int* B, int* C, int size)
+
+{
+
+int i, j, k;
+
+
+for (i = 0, j = 0, k = 0; i < size || j < size; )  //i = A원소 j = B원소  k = C원소
+
+{
+
+if (i == 4)//i =4이면 배열 A값은 모두 참조가 되었으므로 B값을 C에 저장
+
+C[k++] = B[j++];
+
+else if (j == 4)
+
+C[k++] = A[i++]; //j =4이면 배열 B값은 모두 참조가 되었으므로 A값을 C에 저장
+
+
+
+else if (A[i] <= B[j])    //A가 B보다 작으면 A값을 C에 저장
+
+C[k++] = A[i++];  
+
+else                       
+
+C[k++] = B[j++];
+
+}
+
+}
+
+
+
+
+
+void array_print(char *name, int* arr, int size)
+
+{
+
+printf("%s[] = ", name);
+
+for (int i = 0; i < size; i++)
+
+printf("%d ", arr[i]);
+
+printf("\n");
+
+}
+
+int main(void)
+
+{
+
+int A[] = { 2, 5, 7, 8 };
+
+int B[] = { 1, 3, 4, 6 };
+
+int C[MAX * 2];
+
+
+
+array_print("A", A, MAX);
+
+array_print("B", B, MAX);
+
+merge(A, B, C, MAX);
+
+printf("정렬 후 => ");
+
+array_print("C", C, MAX * 2);
+
+
+
+return 0;
+
+}
+
+*/
+
+
+i
