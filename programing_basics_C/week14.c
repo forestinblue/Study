@@ -334,7 +334,7 @@ void main()
 
  for(i=k-1;i>=0;i--)
  {
-  printf("%c",str[i]);¤Ç¤Á
+  printf("%c",str[i]);
  }
 }
 
