@@ -135,6 +135,7 @@ int main(void)
 */
 
 //sprintf()¿Í sscanf() ¿¹Á¦
+/*
 #include <stdio.h>
 
 int main(void)
@@ -150,3 +151,5 @@ int main(void)
     printf("%s \n", s);
     return 0;
 }
+*/
+
